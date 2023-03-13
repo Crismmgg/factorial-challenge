@@ -1,14 +1,23 @@
-import React from "react";
+import React, { useCallback } from "react";
 import Link from "next/link";
 
-import { Avatar, Card, CardContent, Stack, Typography } from "@mui/material";
+import {
+  Avatar,
+  Button,
+  Card,
+  CardContent,
+  Stack,
+  Typography,
+} from "@mui/material";
 
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import HikingIcon from "@mui/icons-material/Hiking";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 import { DataProps } from "../../types/types";
+import { deleteUser } from "../../pages/api/deleteUser";
 
 export default function Users({ data }: DataProps) {
   return (
@@ -30,7 +39,18 @@ export default function Users({ data }: DataProps) {
       </Stack>
       <Typography variant="h4">Users</Typography>
       <Stack direction="row" flexWrap="wrap" justifyContent="center">
-        {data.map(({ userName, avatar, steps, date }) => {
+        {data.map(({ userName, avatar, steps, date, _id }) => {
+          const handleDelete = useCallback(async () => {
+            console.log("delete");
+            // try {
+            //   if (_id) {
+            //     await deleteUser(_id.toString());
+            //   }
+            // } catch (e) {
+            //   console.log(e);
+            // }
+          }, []);
+
           return (
             <Stack key={userName}>
               <Card
@@ -77,6 +97,12 @@ export default function Users({ data }: DataProps) {
                   >
                     <AccessTimeIcon fontSize="small" />
                     <Typography>Timestamp: {date}</Typography>
+                  </Stack>
+                  <Stack>
+                    <Button color="error" onClick={handleDelete}>
+                      <DeleteIcon />
+                      Remove
+                    </Button>
                   </Stack>
                 </CardContent>
               </Card>
