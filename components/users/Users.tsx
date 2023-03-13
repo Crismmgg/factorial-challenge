@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import Link from "next/link";
 
 import {
@@ -17,9 +17,14 @@ import HikingIcon from "@mui/icons-material/Hiking";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 import { DataProps } from "../../types/types";
-import { deleteUser } from "../../pages/api/deleteUser";
+import CreateUserModal from "./CreateUserModal";
 
 export default function Users({ data }: DataProps) {
+  const [isModalopen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = useCallback(() => setIsModalOpen(true), []);
+  const handleCloseModal = useCallback(() => setIsModalOpen(false), []);
+
   return (
     <Stack
       flexWrap="wrap"
@@ -42,7 +47,13 @@ export default function Users({ data }: DataProps) {
       <Typography variant="h4" sx={{ color: "#38852D" }}>
         Users
       </Typography>
-
+      <Button
+        variant="contained"
+        sx={{ backgroundColor: "#7DDC6F" }}
+        onClick={handleOpenModal}
+      >
+        Create new user
+      </Button>
       <Stack direction="row" flexWrap="wrap" justifyContent="center">
         {data.map(({ userName, avatar, steps, date, _id }) => {
           const handleDelete = useCallback(async () => {
@@ -135,6 +146,7 @@ export default function Users({ data }: DataProps) {
           );
         })}
       </Stack>
+      <CreateUserModal isOpen={isModalopen} onCloseModal={handleCloseModal} />
     </Stack>
   );
 }
