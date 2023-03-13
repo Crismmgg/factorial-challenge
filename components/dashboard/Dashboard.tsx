@@ -123,7 +123,7 @@ export default function Dashboard({ data }: DataProps) {
             }}
           >
             <Typography variant="h6">Total users</Typography>
-            {data.length}
+            <Typography sx={{ color: "#595959" }}>{data.length}</Typography>
           </CardContent>
         </Card>
         <Card sx={{ m: 3, p: 0 }}>
@@ -135,7 +135,9 @@ export default function Dashboard({ data }: DataProps) {
             }}
           >
             <Typography variant="h6">Total steps</Typography>
-            {averagesByDay.stepsSum}
+            <Typography sx={{ color: "#595959" }}>
+              {averagesByDay.stepsSum}
+            </Typography>
           </CardContent>
         </Card>
         <Card sx={{ m: 3, p: 0 }}>
@@ -147,7 +149,9 @@ export default function Dashboard({ data }: DataProps) {
             }}
           >
             <Typography variant="h6">Steps average</Typography>
-            {getTotalStepsAverage(showGraphBy, dataSortedByDate)}
+            <Typography sx={{ color: "#595959" }}>
+              {getTotalStepsAverage(showGraphBy, dataSortedByDate)}
+            </Typography>
           </CardContent>
         </Card>
       </Stack>

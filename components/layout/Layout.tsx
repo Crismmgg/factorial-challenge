@@ -34,7 +34,6 @@ export default function Layout() {
           sx={{
             textAlign: "center",
             fontWeight: "400",
-
             color: "#38852D",
           }}
         >
