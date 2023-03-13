@@ -1,16 +1,53 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
+import { ObjectId } from "mongodb";
 import Link from "next/link";
+import Router from "next/router";
 
-import { Avatar, Card, CardContent, Stack, Typography } from "@mui/material";
+import {
+  Avatar,
+  Button,
+  Card,
+  CardContent,
+  Stack,
+  Typography,
+} from "@mui/material";
 
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import HikingIcon from "@mui/icons-material/Hiking";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 import { DataProps } from "../../types/types";
+import CreateUserModal from "./CreateUserModal";
 
 export default function Users({ data }: DataProps) {
+  const [isModalopen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = useCallback(() => setIsModalOpen(true), []);
+  const handleCloseModal = useCallback(() => setIsModalOpen(false), []);
+
+  const dataSortedByDate = data.sort((a, b) =>
+    b.date.toLocaleString().localeCompare(a.date.toLocaleString())
+  );
+
+  const handleDelete = async (id: ObjectId) => {
+    let res = await fetch("/api/remove?userId=" + id, {
+      method: "DELETE",
+    });
+
+    await res.json();
+
+    if (res.status === 200) {
+      const userIndex = dataSortedByDate.findIndex((user) => user._id === id);
+      if (userIndex !== -1) {
+        dataSortedByDate.splice(userIndex, 1);
+      }
+
+      Router.reload();
+    }
+  };
+
   return (
     <Stack
       flexWrap="wrap"
@@ -33,9 +70,24 @@ export default function Users({ data }: DataProps) {
       <Typography variant="h4" sx={{ color: "#38852D" }}>
         Users
       </Typography>
+      <Button
+        variant="contained"
+        sx={{ backgroundColor: "#7DDC6F" }}
+        onClick={handleOpenModal}
+      >
+        Create new user
+      </Button>
+      <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
+        <Typography variant="h6" sx={{ color: "#595959" }}>
+          Current users
+        </Typography>
+        <Typography variant="h6" sx={{ color: "#595959" }}>
+          {dataSortedByDate.length}
+        </Typography>
+      </Stack>
 
       <Stack direction="row" flexWrap="wrap" justifyContent="center">
-        {data.map(({ userName, avatar, steps, date }) => {
+        {dataSortedByDate.map(({ userName, avatar, steps, date, _id }) => {
           return (
             <Stack key={userName}>
               <Card
@@ -103,12 +155,22 @@ export default function Users({ data }: DataProps) {
                     </Typography>
                     <Typography sx={{ color: "#595959" }}>{date}</Typography>
                   </Stack>
+                  <Stack>
+                    <Button
+                      color="error"
+                      onClick={() => handleDelete(_id as ObjectId)}
+                    >
+                      <DeleteIcon />
+                      Remove
+                    </Button>
+                  </Stack>
                 </CardContent>
               </Card>
             </Stack>
           );
         })}
       </Stack>
+      <CreateUserModal isOpen={isModalopen} onCloseModal={handleCloseModal} />
     </Stack>
   );
 }
