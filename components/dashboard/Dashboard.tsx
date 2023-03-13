@@ -104,11 +104,15 @@ export default function Dashboard({ data }: DataProps) {
     >
       <Stack sx={{ width: "100%", alignItems: "flex-start" }}>
         <Link href={"/"} className="dashboard_goback">
-          <ArrowBackIcon />
-          <Typography variant="body1">Go back</Typography>
+          <ArrowBackIcon sx={{ color: "#595959" }} />
+          <Typography variant="body1" sx={{ color: "#595959" }}>
+            Go back
+          </Typography>
         </Link>
       </Stack>
-      <Typography variant="h4">Dashboard</Typography>
+      <Typography variant="h4" sx={{ color: "#38852D" }}>
+        Dashboard
+      </Typography>
       <Stack sx={{ flexDirection: { xs: "columun", sm: "row" } }}>
         <Card sx={{ m: 3, p: 0 }}>
           <CardContent

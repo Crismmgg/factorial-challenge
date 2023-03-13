@@ -68,7 +68,7 @@ export default function Layout() {
             },
           }}
         >
-          <Link href="/users">Go to users</Link>
+          <Link href="/users">Users section</Link>
         </Button>
       </Grid>
     </Grid>
