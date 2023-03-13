@@ -33,11 +33,16 @@ export default function Users({ data }: DataProps) {
     >
       <Stack sx={{ width: "100%", alignItems: "flex-start" }}>
         <Link href={"/"} className="dashboard_goback">
-          <ArrowBackIcon />
-          <Typography variant="body1">Go back</Typography>
+          <ArrowBackIcon sx={{ color: "#595959" }} />
+          <Typography variant="body1" sx={{ color: "#595959" }}>
+            Go back
+          </Typography>
         </Link>
       </Stack>
-      <Typography variant="h4">Users</Typography>
+      <Typography variant="h4" sx={{ color: "#38852D" }}>
+        Users
+      </Typography>
+
       <Stack direction="row" flexWrap="wrap" justifyContent="center">
         {data.map(({ userName, avatar, steps, date, _id }) => {
           const handleDelete = useCallback(async () => {
@@ -75,8 +80,16 @@ export default function Users({ data }: DataProps) {
                       alignItems: "center",
                     }}
                   >
-                    <PersonOutlineIcon fontSize="small" />
-                    <Typography>Name: {userName}</Typography>
+                    <PersonOutlineIcon
+                      fontSize="small"
+                      sx={{ mr: 0.5, color: "#38852D" }}
+                    />
+                    <Typography sx={{ mr: 0.5, color: "#38852D" }}>
+                      Name:
+                    </Typography>
+                    <Typography sx={{ color: "#595959" }}>
+                      {userName}
+                    </Typography>
                   </Stack>
                   <Stack
                     direction="row"
@@ -85,8 +98,14 @@ export default function Users({ data }: DataProps) {
                       alignItems: "center",
                     }}
                   >
-                    <HikingIcon fontSize="small" />
-                    <Typography>Number of steps: {steps}</Typography>
+                    <HikingIcon
+                      fontSize="small"
+                      sx={{ mr: 0.5, color: "#38852D" }}
+                    />
+                    <Typography sx={{ mr: 0.5, color: "#38852D" }}>
+                      Number of steps:
+                    </Typography>
+                    <Typography sx={{ color: "#595959" }}>{steps}</Typography>
                   </Stack>
                   <Stack
                     sx={{
@@ -95,8 +114,14 @@ export default function Users({ data }: DataProps) {
                       flexDirection: "row",
                     }}
                   >
-                    <AccessTimeIcon fontSize="small" />
-                    <Typography>Timestamp: {date}</Typography>
+                    <AccessTimeIcon
+                      fontSize="small"
+                      sx={{ mr: 0.5, color: "#38852D" }}
+                    />
+                    <Typography sx={{ mr: 0.5, color: "#38852D" }}>
+                      Timestamp:
+                    </Typography>
+                    <Typography sx={{ color: "#595959" }}>{date}</Typography>
                   </Stack>
                   <Stack>
                     <Button color="error" onClick={handleDelete}>
