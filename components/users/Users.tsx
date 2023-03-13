@@ -1,5 +1,7 @@
 import React, { useCallback, useState } from "react";
+import { ObjectId } from "mongodb";
 import Link from "next/link";
+import Router from "next/router";
 
 import {
   Avatar,
@@ -24,6 +26,27 @@ export default function Users({ data }: DataProps) {
 
   const handleOpenModal = useCallback(() => setIsModalOpen(true), []);
   const handleCloseModal = useCallback(() => setIsModalOpen(false), []);
+
+  const dataSortedByDate = data.sort((a, b) =>
+    b.date.toLocaleString().localeCompare(a.date.toLocaleString())
+  );
+
+  const handleDelete = async (id: ObjectId) => {
+    let res = await fetch("/api/remove?userId=" + id, {
+      method: "DELETE",
+    });
+
+    await res.json();
+
+    if (res.status === 200) {
+      const userIndex = dataSortedByDate.findIndex((user) => user._id === id);
+      if (userIndex !== -1) {
+        dataSortedByDate.splice(userIndex, 1);
+      }
+
+      Router.reload();
+    }
+  };
 
   return (
     <Stack
@@ -54,19 +77,17 @@ export default function Users({ data }: DataProps) {
       >
         Create new user
       </Button>
-      <Stack direction="row" flexWrap="wrap" justifyContent="center">
-        {data.map(({ userName, avatar, steps, date, _id }) => {
-          const handleDelete = useCallback(async () => {
-            console.log("delete");
-            // try {
-            //   if (_id) {
-            //     await deleteUser(_id.toString());
-            //   }
-            // } catch (e) {
-            //   console.log(e);
-            // }
-          }, []);
+      <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
+        <Typography variant="h6" sx={{ color: "#595959" }}>
+          Current users
+        </Typography>
+        <Typography variant="h6" sx={{ color: "#595959" }}>
+          {dataSortedByDate.length}
+        </Typography>
+      </Stack>
 
+      <Stack direction="row" flexWrap="wrap" justifyContent="center">
+        {dataSortedByDate.map(({ userName, avatar, steps, date, _id }) => {
           return (
             <Stack key={userName}>
               <Card
@@ -135,7 +156,10 @@ export default function Users({ data }: DataProps) {
                     <Typography sx={{ color: "#595959" }}>{date}</Typography>
                   </Stack>
                   <Stack>
-                    <Button color="error" onClick={handleDelete}>
+                    <Button
+                      color="error"
+                      onClick={() => handleDelete(_id as ObjectId)}
+                    >
                       <DeleteIcon />
                       Remove
                     </Button>

@@ -1,5 +1,7 @@
-import React, { useCallback, useState } from "react";
+import React, { FormEvent, useCallback, useState } from "react";
+import Router from "next/router";
 
+import { faker } from "@faker-js/faker";
 import {
   Box,
   Button,
@@ -34,37 +36,34 @@ export default function CreateUserModal({
     p: 2,
   };
 
-  console.log({ userName, steps });
-  const handleSubmit = useCallback(async (ev) => {
+  const handleSubmit = async (
+    ev: FormEvent,
+    userName: string,
+    steps: number
+  ) => {
     ev.preventDefault();
 
     const user = {
       userName,
       steps: steps.toString(),
+      date: new Date(),
+      avatar: faker.image.avatar(),
     };
-    console.log({ user });
 
-    // try {
-    //   await createUser(user);
-    // } catch (e) {
-    //   console.log(e);
-    // }
+    let res = await fetch("/api/createUser", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ user: user }),
+    });
+    await res.json();
 
-    // const client = await clientPromise;
-    // const db = client.db("factorial-db");
-    // const collection: Collection = db.collection("users");
-
-    // const user: User = {
-    //   userName,
-    //   steps,
-    //   date: new Date(),
-    //   avatar: faker.image.avatar(),
-    // };
-
-    // await collection.insertOne(user);
-
-    onCloseModal();
-  }, []);
+    if (res.status === 200) {
+      Router.reload();
+      onCloseModal();
+    }
+  };
 
   const handleOnChangeName = useCallback((ev) => {
     setUserName(ev.target.value);
@@ -82,7 +81,7 @@ export default function CreateUserModal({
           <Typography variant="h5" sx={{ color: "#2F9B20" }}>
             Create new user
           </Typography>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={(ev) => handleSubmit(ev, userName, steps)}>
             <Stack spacing={3} sx={{ flexDirection: "column" }}>
               <TextField
                 required
