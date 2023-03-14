@@ -46,9 +46,10 @@ export default function Layout() {
       <Grid
         container
         item
+        direction={{ xs: "column", sm: "row" }}
         justifyContent="space-evenly"
         alignItems="center"
-        sx={{ pl: 0 }}
+        sx={{ pl: 0, gap: { xs: 2, sm: 0 } }}
       >
         <Button
           variant="contained"
