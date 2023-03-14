@@ -1,82 +1,76 @@
-## Example app using MongoDB
+# Growth Engineer - FACTORIAL
 
-[MongoDB](https://www.mongodb.com/) is a general purpose, document-based, distributed database built for modern application developers and for the cloud era. This example will show you how to connect to and use MongoDB as your backend for your Next.js app.
+- [The Challenge](#the-challenge)
+- [My Solution](#my-solution)
 
-If you want to learn more about MongoDB, visit the following pages:
+## The Challenge
 
-- [MongoDB Atlas](https://mongodb.com/atlas)
-- [MongoDB Documentation](https://docs.mongodb.com/)
+### 🖥 Your Job
 
-## Deploy your own
+Your job is to create a simple app with a backend and a client, with a special emphasis on quality. Feel free to use whatever tools you feel more comfortable with for the frontend and the backend, but those must be separated (single-page application). You’ll get extra points if the tool can be easily run on our machines.
 
-Once you have access to the environment variables you'll need, deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?project-name=with-mongodb&repository-name=with-mongodb&repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fwith-mongodb&integration-ids=oac_jnzmjqM10gllKmSrG0SGrHOH)
+### 💪 The Challenge
 
-## How to use
+**Your challenge is to build a Frontend + Backend application that allows you to post and visualize metrics in a usable way.** Each metric will have a timestamp, name, and value. The metrics will be shown in a timeline and must show averages per minute/hour/day and persisted in the database.
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+The maximum time for the challenge is 8 hours in the time frame we establish. Feel free to use any tools you need, but remember to keep your code accessible on the public GitHub repository and use one of our technologies (React, Next.js...). If possible include both the backend and frontend code in the same repo.
 
-```bash
-npx create-next-app --example with-mongodb with-mongodb-app
-```
 
-```bash
-yarn create next-app --example with-mongodb with-mongodb-app
-```
 
-```bash
-pnpm create next-app --example with-mongodb with-mongodb-app
-```
+### ✅ To evaluate
 
-## Configuration
+Once you deliver the challenge, we’ll schedule a second meeting with the rest of the team to evaluate your coding process, your ability to write clean code, and beautiful CSS (you can use preprocessors like Sass, Stylus, CSS-in-JS,..., or vanilla CSS), your ability to analyze and test your solution, and your capacity to prioritize the project and your decisions.
 
-### Set up a MongoDB database
+--- 
 
-Set up a MongoDB database either locally or with [MongoDB Atlas for free](https://mongodb.com/atlas).
+## My solution
 
-### Set up environment variables
+### 💻 Tech Stack
 
-Copy the `env.local.example` file in this directory to `.env.local` (which will be ignored by Git):
+- [NextJs](https://nextjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Sass](https://sass-lang.com/)
+- [MUI Material](https://mui.com/)
+- [Chart.js](https://www.chartjs.org/)
+- [Faker js](https://fakerjs.dev/)
+- [Mongodb](https://www.mongodb.com/it-it/cloud/atlas/register?utm_content=rlsapostreg&utm_source=google&utm_campaign=search_gs_pl_evergreen_atlas_general_retarget-brand-postreg_gic-null_emea-all_ps-all_desktop_eng_lead&utm_term=&utm_medium=cpc_paid_search&utm_ad=&utm_ad_campaign_id=14412646473&adgroup=131761130372&cq_cmp=14412646473&gclid=Cj0KCQjwtsCgBhDEARIsAE7RYh0mjz-PsdeRDEMPk4-JwptSmvSYWAd4EzIXWIuRzXUCfrbUGEe3wGoaArD-EALw_wcB)
 
-```bash
-cp .env.local.example .env.local
-```
+### 👣 The App
 
-Set each variable on `.env.local`:
+My app collects the steps registered by users. 
+When you go in, yo can see a main layout with two sections: Go to the [dahsboard](#dashboard-section) or go to the [users section](#users-section)
 
-- `MONGODB_URI` - Your MongoDB connection string. If you are using [MongoDB Atlas](https://mongodb.com/atlas) you can find this by clicking the "Connect" button for your cluster.
+#### Dashboard section
 
-### Run Next.js in development mode
+Here you can see the info added by the users.
 
-```bash
-npm install
-npm run dev
+At the top, you will see information such as the total number of registered users in the app, the total steps registered by those users and also the average number of steps.
+This average will be displayed depending on the time unit you choose in the select input. 
 
-# or
+In addition, here you can see a graph with the number of steps over time choosing the unit of time you prefer: per day, per hour or per minute.
 
-yarn install
-yarn dev
-```
 
-Your app should be up and running on [http://localhost:3000](http://localhost:3000)! If it doesn't work, post on [GitHub discussions](https://github.com/vercel/next.js/discussions).
+#### Users section
 
-You will either see a message stating "You are connected to MongoDB" or "You are NOT connected to MongoDB". Ensure that you have provided the correct `MONGODB_URI` environment variable.
+In this section, you can see the info of all registered users at that time in our database.
+Also, you can add or remove users if you want 🙂
 
-When you are successfully connected, you can refer to the [MongoDB Node.js Driver docs](https://mongodb.github.io/node-mongodb-native/3.4/tutorials/collections/) for further instructions on how to query your database.
 
-## Deploy on Vercel
+### ⚙️ Make it work!
+If you want to run it in your local, run `npm install` to install the necessary dependencies.
 
-You can deploy this app to the cloud with [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+You will need to add in a `.env` file a "connection string" to connect to the database. You can ask me for mine if you need it.
 
-#### Deploy Your Local Project
+Then, run `npm run dev` to start it; the app will be up and runing on [http://localhost:3000](http://localhost:3000)!
 
-To deploy your local project to Vercel, push it to GitHub/GitLab/Bitbucket and [import to Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example).
+You can also see the app working [here!](https://factorial-challenge-three.vercel.app/) 
 
-**Important**: When you import your project on Vercel, make sure to click on **Environment Variables** and set them to match your `.env.local` file.
 
-#### Deploy from Our Template
+### Thanks and ¡¡Enjoy!!
 
-Alternatively, you can deploy using our template by clicking on the Deploy button below.
+![thanks](https://media.giphy.com/media/xTiN0CNHgoRf1Ha7CM/giphy.gif)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?project-name=with-mongodb&repository-name=with-mongodb&repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fwith-mongodb&integration-ids=oac_jnzmjqM10gllKmSrG0SGrHOH)
+
+
+
