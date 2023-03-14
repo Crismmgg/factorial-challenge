@@ -65,11 +65,11 @@ export default function CreateUserModal({
     }
   };
 
-  const handleOnChangeName = useCallback((ev) => {
+  const handleOnChangeName = useCallback((ev: any) => {
     setUserName(ev.target.value);
   }, []);
 
-  const handleOnChangeSteps = useCallback((ev) => {
+  const handleOnChangeSteps = useCallback((ev: any) => {
     setSteps(ev.target.value);
   }, []);
 

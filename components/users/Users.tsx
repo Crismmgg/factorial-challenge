@@ -17,7 +17,7 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import HikingIcon from "@mui/icons-material/Hiking";
 import DeleteIcon from "@mui/icons-material/Delete";
-import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
 
 import { DataProps } from "../../types/types";
 import CreateUserModal from "./CreateUserModal";
@@ -162,7 +162,9 @@ export default function Users({ data }: DataProps) {
                     <Typography sx={{ mr: 0.5, color: "#38852D" }}>
                       Timestamp:
                     </Typography>
-                    <Typography sx={{ color: "#595959" }}>{date}</Typography>
+                    <Typography sx={{ color: "#595959" }}>
+                      {date as any}
+                    </Typography>
                   </Stack>
                   <Stack>
                     <Button
