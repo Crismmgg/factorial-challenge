@@ -20,7 +20,7 @@ export const getTotalStepsAverage = (
   const averageByDay = getAverageByDay(dataSortedByDate).totalStepsAverageByDay;
   switch (showGraphBy) {
     case "byDays":
-      return averageByDay;
+      return Math.round(averageByDay);
 
     case "byHours":
       return Math.round(averageByDay / 24);

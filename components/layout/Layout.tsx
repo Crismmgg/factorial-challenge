@@ -3,6 +3,9 @@ import Link from "next/link";
 
 import { Button, Grid, Typography } from "@mui/material";
 
+import AutoGraphIcon from "@mui/icons-material/AutoGraph";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+
 export default function Layout() {
   return (
     <Grid
@@ -34,7 +37,6 @@ export default function Layout() {
           sx={{
             textAlign: "center",
             fontWeight: "400",
-
             color: "#38852D",
           }}
         >
@@ -51,24 +53,32 @@ export default function Layout() {
         <Button
           variant="contained"
           size="large"
-          sx={{ backgroundColor: "#7DDC6F" }}
+          endIcon={<AutoGraphIcon />}
+          sx={{
+            backgroundColor: "#7DDC6F",
+            "&:hover": {
+              color: "#7DDC6F",
+              backgroundColor: "#FFFFFF",
+              borderColor: "#7DDC6F",
+            },
+          }}
         >
           <Link href="/dashboard">See Dashboard</Link>
         </Button>
         <Button
           variant="contained"
           size="large"
+          endIcon={<AccountCircleIcon />}
           sx={{
             backgroundColor: "#7DDC6F",
-
-            ":active": {
-              boxShadow: "none",
-              backgroundColor: "#7DDC6F",
+            "&:hover": {
+              color: "#7DDC6F",
+              backgroundColor: "#FFFFFF",
               borderColor: "#7DDC6F",
             },
           }}
         >
-          <Link href="/users">Go to users</Link>
+          <Link href="/users">Users section</Link>
         </Button>
       </Grid>
     </Grid>

@@ -104,11 +104,15 @@ export default function Dashboard({ data }: DataProps) {
     >
       <Stack sx={{ width: "100%", alignItems: "flex-start" }}>
         <Link href={"/"} className="dashboard_goback">
-          <ArrowBackIcon />
-          <Typography variant="body1">Go back</Typography>
+          <ArrowBackIcon sx={{ color: "#595959" }} />
+          <Typography variant="body1" sx={{ color: "#595959" }}>
+            Go back
+          </Typography>
         </Link>
       </Stack>
-      <Typography variant="h4">Dashboard</Typography>
+      <Typography variant="h4" sx={{ color: "#38852D" }}>
+        Dashboard
+      </Typography>
       <Stack sx={{ flexDirection: { xs: "columun", sm: "row" } }}>
         <Card sx={{ m: 3, p: 0 }}>
           <CardContent
@@ -119,7 +123,7 @@ export default function Dashboard({ data }: DataProps) {
             }}
           >
             <Typography variant="h6">Total users</Typography>
-            {data.length}
+            <Typography sx={{ color: "#595959" }}>{data.length}</Typography>
           </CardContent>
         </Card>
         <Card sx={{ m: 3, p: 0 }}>
@@ -131,7 +135,9 @@ export default function Dashboard({ data }: DataProps) {
             }}
           >
             <Typography variant="h6">Total steps</Typography>
-            {averagesByDay.stepsSum}
+            <Typography sx={{ color: "#595959" }}>
+              {averagesByDay.stepsSum}
+            </Typography>
           </CardContent>
         </Card>
         <Card sx={{ m: 3, p: 0 }}>
@@ -143,7 +149,9 @@ export default function Dashboard({ data }: DataProps) {
             }}
           >
             <Typography variant="h6">Steps average</Typography>
-            {getTotalStepsAverage(showGraphBy, dataSortedByDate)}
+            <Typography sx={{ color: "#595959" }}>
+              {getTotalStepsAverage(showGraphBy, dataSortedByDate)}
+            </Typography>
           </CardContent>
         </Card>
       </Stack>
