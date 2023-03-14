@@ -17,6 +17,7 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import HikingIcon from "@mui/icons-material/Hiking";
 import DeleteIcon from "@mui/icons-material/Delete";
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
 
 import { DataProps } from "../../types/types";
 import CreateUserModal from "./CreateUserModal";
@@ -72,7 +73,15 @@ export default function Users({ data }: DataProps) {
       </Typography>
       <Button
         variant="contained"
-        sx={{ backgroundColor: "#7DDC6F" }}
+        endIcon={<PersonAddIcon />}
+        sx={{
+          backgroundColor: "#7DDC6F",
+          "&:hover": {
+            color: "#7DDC6F",
+            backgroundColor: "#FFFFFF",
+            borderColor: "#7DDC6F",
+          },
+        }}
         onClick={handleOpenModal}
       >
         Create new user
@@ -158,9 +167,9 @@ export default function Users({ data }: DataProps) {
                   <Stack>
                     <Button
                       color="error"
+                      startIcon={<DeleteIcon />}
                       onClick={() => handleDelete(_id as ObjectId)}
                     >
-                      <DeleteIcon />
                       Remove
                     </Button>
                   </Stack>
