@@ -58,8 +58,10 @@ Also, you can add or remove users if you want 🙂
 
 
 ### ⚙️ Make it work!
+If you want to run it in your local, run `npm install` to install the necessary dependencies.
 
-You have to run `npm install` in your local to install the necessary dependencies.
+You will need to add in a `.env` file a "connection string" to connect to the database. You can ask me for mine if you need it.
+
 Then, run `npm run dev` to start it; the app will be up and runing on [http://localhost:3000](http://localhost:3000)!
 
 You can also see the app working [here!](https://factorial-challenge-three.vercel.app/) 
