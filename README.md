@@ -28,9 +28,9 @@ Once you deliver the challenge, we’ll schedule a second meeting with the rest 
 
 ### 💻 Tech Stack
 
-- NextJs
-- TypeScript
-- Sass
+- [NextJs](https://nextjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Sass](https://sass-lang.com/)
 - [MUI Material](https://mui.com/)
 - [Chart.js](https://www.chartjs.org/)
 - [Faker js](https://fakerjs.dev/)
